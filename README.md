@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Product Management Panel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with Create React App using TypeScript, styled-components, Formik, Yup, Redux, and Lodash.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+Product Management Panel is a web application built with React that provides a user-friendly interface to manage products. The panel offers functionalities for user login, product editing, and supports three different user roles: admin, customer, and employee. Users can log in using existing accounts or create new accounts with administrator privileges.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+User Authentication: The panel allows users to log in using their credentials or create new accounts with admin rights.
+Role-based Access Control: There are three roles available: admin, customer, and employee, each with different permissions.
+Customer Functionality: Customers can add and remove products from their shopping cart.
+Employee Functionality: Employees can add and edit products in the system.
+Admin Functionality: Administrators have full control over products, including adding, editing, and removing them.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+Follow these steps to get the project up and running on your local machine:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository: `git clone https://github.com/K2Ice/products-panel.git`
+2. Navigate to the project directory: `cd products-panel`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
 
-### `npm run build`
+## Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The project relies on the following libraries:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React**
+- **Typescript**
+- **Redux**
+- **Styled Components**
+- **Formik**
+- **Yup**
+- **Lodash**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+1.  Upon accessing the panel, users will be presented with a login form.
+2.  Existing users can enter their credentials to log in, while new users can create an account with admin permissions.
+3.  Below are the login details for each type of account:
+    **Customer Account:**
+    Login: p.knys@gmail.com
+    Password: knys1234
+    **Employee Account:**
+    Login: t.kowalski@gmail.com
+    Password: kowalski123
+    **Admin Account:**
+    Login: j.nowak@gmail.com
+    Password: 123nowak123
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+        **Creating a New Account:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    If you choose to create a new account, it will automatically be granted admin privileges.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4.  After successful login, users will be redirected to the main dashboard.
+5.  The dashboard will display different functionalities based on the user's role:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Customers will see their shopping cart and product catalog.
+- Employees will have access to product management and editing functionalities.
+- Admins will have full control over product management, including adding, editing, and deleting products.
