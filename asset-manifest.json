@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/products-panel/static/js/main.3c7853cc.js",
+    "index.html": "/products-panel/index.html",
+    "main.3c7853cc.js.map": "/products-panel/static/js/main.3c7853cc.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.3c7853cc.js"
+  ]
+}
