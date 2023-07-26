@@ -1,7 +1,7 @@
 
 # Product Management Panel
 
-This project was bootstrapped with Create React App using TypeScript, styled-components, Formik, Yup, Redux, and Lodash.
+This project was bootstrapped with Create React App using TypeScript, Styled Components, Formik, Yup, Redux, and Lodash.
 
 ## Overview
 
