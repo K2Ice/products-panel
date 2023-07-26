@@ -1,9 +1,11 @@
+import { FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 
 import { RootState } from "../../store/store"
-import { removeProduct } from "../../store/productsSlice"
+import { removeProduct, updateProductAmount } from "../../store/productsSlice"
 import { closePopup } from "../../store/popupSlice"
+import { removeProductFromCart } from "../../store/userSlice"
 
 const StyledContainer = styled.div`
   position: absolute;
@@ -52,7 +54,7 @@ const StyledBackdrop = styled.div`
   z-index: 100;
 `
 
-const PopupConfirm = () => {
+const PopupConfirm: FC<{ type: "page" | "basket" }> = ({ type }) => {
   const dispatch = useDispatch()
   const productData = useSelector((state: RootState) => state.popup.productData)
 
@@ -68,7 +70,18 @@ const PopupConfirm = () => {
           <StyledBtn
             color="green"
             onClick={() => {
-              dispatch(removeProduct(productData!.id))
+              if (type === "page") {
+                dispatch(removeProduct(productData!.id))
+              } else {
+                dispatch(removeProductFromCart(productData!.id))
+                dispatch(
+                  updateProductAmount({
+                    id: productData!.id,
+                    amount: productData!.amount,
+                    type: "add",
+                  })
+                )
+              }
               dispatch(closePopup())
             }}
           >

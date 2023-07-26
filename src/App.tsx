@@ -1,4 +1,3 @@
-import React from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import HomePage from "./pages/HomePage"
@@ -7,9 +6,9 @@ import EditProductPage from "./pages/EditProductPage"
 import AddProductPage from "./pages/AddProductPage"
 import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
+import BasketPage from "./pages/BasketPage"
 
 import Layout from "./components/_shared/layout/Layout"
-import BasketPage from "./pages/BasketPage"
 
 const router = createBrowserRouter([
   {
@@ -35,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "basket",
         element: <BasketPage />,
+      },
+      {
+        path: "*",
+        element: <HomePage />,
       },
     ],
   },

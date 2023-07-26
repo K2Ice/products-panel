@@ -24,7 +24,7 @@ export const Pagination = ({ listLength }: PaginationProps) => {
             navigate(
               `/products?page=${String(i + 1)}${
                 wayParam ? `&way=${wayParam}` : ""
-              }${sortParam ? `&way=${sortParam}` : ""}`
+              }${sortParam ? `&sort=${sortParam}` : ""}`
             )
           }}
           style={{

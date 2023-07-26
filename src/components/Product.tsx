@@ -17,8 +17,14 @@ import {
 import { RootState } from "../store/store"
 import { Role } from "../types/user"
 import { addProductToCart } from "../store/userSlice"
+import { updateProductAmount } from "../store/productsSlice"
 
-const Product: FC<{ product: ProductInterface }> = ({ product }) => {
+interface ProductProps {
+  product: ProductInterface
+  type: "page" | "basket"
+}
+
+const Product: FC<ProductProps> = ({ product, type }) => {
   const dispatch = useDispatch()
   const loggedUser = useSelector((state: RootState) => state.user.loggedUser)
   const navigate = useNavigate()
@@ -26,14 +32,24 @@ const Product: FC<{ product: ProductInterface }> = ({ product }) => {
   const inputAmount = useRef<HTMLInputElement | null>(null)
 
   return (
-    <StyledTr status={product.status === Status.Available ? true : false}>
+    <StyledTr
+      status={
+        type === "basket" ? "basket" : product.status === Status.Available
+      }
+    >
       <StyledTd>{product.title}</StyledTd>
       <StyledTd>{product.price} zł</StyledTd>
       <StyledTd>{product.amount} szt.</StyledTd>
-      <StyledTd>{product.status}</StyledTd>
-      <StyledTd>
+      {type === "page" && loggedUser?.role !== Role.Client && (
+        <StyledTd>{product.status}</StyledTd>
+      )}
+      <StyledTd type={type} role={loggedUser?.role}>
         <StyledBoxActions>
-          {loggedUser?.role !== Role.Client ? (
+          {type === "basket" ? (
+            <StyledBtnDelete onClick={() => dispatch(openPopup(product))}>
+              Usuń
+            </StyledBtnDelete>
+          ) : loggedUser?.role !== Role.Client ? (
             <>
               <StyledBtnEdit
                 onClick={() => navigate(`/product/edit/${product.id}`)}
@@ -58,17 +74,25 @@ const Product: FC<{ product: ProductInterface }> = ({ product }) => {
                 onClick={() => {
                   if (
                     inputAmount.current &&
-                    Number(inputAmount.current.value) > 0
+                    Number(inputAmount.current.value) > 0 &&
+                    Number(inputAmount.current?.value) <= product.amount
                   ) {
                     dispatch(
                       addProductToCart({
-                        id: loggedUser.id,
                         product: {
                           ...product,
                           amount: Number(inputAmount.current?.value),
                         },
                       })
                     )
+                    dispatch(
+                      updateProductAmount({
+                        id: product.id,
+                        amount: Number(inputAmount.current?.value),
+                        type: "remove",
+                      })
+                    )
+                    inputAmount.current.value = "1"
                   }
                 }}
               >
