@@ -1,7 +1,10 @@
+import { FC } from "react"
+
 import FormLogin from "../components/FormLogin"
+
 import { StyledContainer, StyledTitle } from "./LoginPage.css"
 
-const LoginPage = () => {
+const LoginPage: FC = () => {
   return (
     <StyledContainer>
       <StyledTitle>Logowanie:</StyledTitle>

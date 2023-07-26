@@ -1,5 +1,8 @@
+import { FC } from "react"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons"
+
 import {
   StyledBoxImage,
   StyledContainer,
@@ -7,7 +10,7 @@ import {
   StyledTitle,
 } from "./HomePage.css"
 
-const HomePage = () => {
+const HomePage: FC = () => {
   return (
     <StyledContainer>
       <StyledTitle>Panel kontrolny produktów</StyledTitle>

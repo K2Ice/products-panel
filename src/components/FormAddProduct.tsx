@@ -35,16 +35,16 @@ const validationSchema = Yup.object().shape({
     .min(1, "Minimalna ilość to 1 sztuka"),
 })
 
-const initialValues: Omit<ProductInterface, "id"> = {
-  title: "",
-  price: 0,
-  amount: 1,
-  status: Status.Available,
-}
-
 const FormAddProduct: FC = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const initialValues: Omit<ProductInterface, "id"> = {
+    title: "",
+    price: 0,
+    amount: 1,
+    status: Status.Available,
+  }
 
   const submitForm = (values: typeof initialValues) => {
     dispatch(
@@ -53,7 +53,7 @@ const FormAddProduct: FC = () => {
         ...values,
       })
     )
-    navigate("products?page=1&way=asc&sort=title")
+    navigate("/products?page=1&way=asc&sort=title")
   }
 
   return (
@@ -130,7 +130,7 @@ const FormAddProduct: FC = () => {
                     onChange={handleChange}
                   >
                     {Object.entries(Status).map(([key, value], index) => (
-                      <option key={index} value={key}>
+                      <option key={index} value={value}>
                         {value}
                       </option>
                     ))}

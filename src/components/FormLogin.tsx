@@ -1,13 +1,13 @@
-import { FC, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik } from "formik";
-import * as Yup from "yup";
+import { FC, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Formik } from "formik"
+import * as Yup from "yup"
 
-import { loginUser } from "../store/userSlice";
-import { RootState } from "../store/store";
+import { loginUser } from "../store/userSlice"
+import { RootState } from "../store/store"
 
-import { FormLoginValues } from "../types/forms";
+import { FormLoginValues } from "../types/forms"
 
 import {
   StyledBoxForm,
@@ -20,33 +20,32 @@ import {
   StyledTextError,
   StyledTextErrorResponse,
   StyledTextRedirect,
-} from "./Form.css";
+} from "./Form.css"
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required("Podaj email.").email("Podaj poprawny email."),
   password: Yup.string().required("Podaj hasło."),
-});
-
-const initialValues: FormLoginValues = {
-  email: "",
-  password: "",
-};
+})
 
 const FormLogin: FC = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { response } = useSelector((state: RootState) => state.user)
 
-  const { response } = useSelector((state: RootState) => state.user);
+  const initialValues: FormLoginValues = {
+    email: "",
+    password: "",
+  }
 
   const submitForm = (values: FormLoginValues) => {
-    dispatch(loginUser(values));
-  };
+    dispatch(loginUser(values))
+  }
 
   useEffect(() => {
     if (response.success) {
-      navigate("/");
+      navigate("/")
     }
-  }, [response]);
+  }, [response])
 
   return (
     <Formik
@@ -62,7 +61,7 @@ const FormLogin: FC = () => {
           handleChange,
           handleSubmit,
           handleBlur,
-        } = formik;
+        } = formik
         return (
           <StyledBoxForm>
             <StyledForm onSubmit={handleSubmit} noValidate>
@@ -112,10 +111,10 @@ const FormLogin: FC = () => {
               </div>
             </StyledForm>
           </StyledBoxForm>
-        );
+        )
       }}
     </Formik>
-  );
-};
+  )
+}
 
-export default FormLogin;
+export default FormLogin

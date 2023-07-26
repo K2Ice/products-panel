@@ -1,6 +1,8 @@
-import styled from "styled-components"
-import { maxWidthContainer } from "../styles/theme"
 import { Link } from "react-router-dom"
+
+import styled from "styled-components"
+
+import { maxWidthContainer } from "../styles/theme"
 
 export const StyledContainer = styled.div`
   max-width: ${maxWidthContainer};

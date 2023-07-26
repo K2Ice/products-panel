@@ -21,10 +21,6 @@ import {
   StyledTextError,
 } from "./Form.css"
 
-interface FormEditProps {
-  product: ProductInterface
-}
-
 const validationSchema = Yup.object().shape({
   title: Yup.string()
     .required("Nazwa produktu jest wymagana.")
@@ -38,6 +34,10 @@ const validationSchema = Yup.object().shape({
     .min(1, "Minimalna ilość to 1 sztuka"),
   status: Yup.mixed().oneOf(Object.values(Status)),
 })
+
+interface FormEditProps {
+  product: ProductInterface
+}
 
 const FormEditProduct: FC<FormEditProps> = ({ product }) => {
   const dispatch = useDispatch()
@@ -57,7 +57,7 @@ const FormEditProduct: FC<FormEditProps> = ({ product }) => {
         ...values,
       })
     )
-    navigate("/products?page=1")
+    navigate("/products?page=1&way=asc&sort=title")
   }
 
   return (

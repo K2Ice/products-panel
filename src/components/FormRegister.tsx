@@ -1,12 +1,12 @@
-import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { Formik } from "formik";
-import * as Yup from "yup";
+import { FC, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router"
+import { Formik } from "formik"
+import * as Yup from "yup"
 
-import { FormRegisterValues } from "../types/forms";
-import { RootState } from "../store/store";
-import { registerUser } from "../store/userSlice";
+import { FormRegisterValues } from "../types/forms"
+import { RootState } from "../store/store"
+import { registerUser } from "../store/userSlice"
 
 import {
   StyledBoxForm,
@@ -18,7 +18,7 @@ import {
   StyledTextRedirect,
   StyledLinkRedirect,
   StyledTextErrorResponse,
-} from "./Form.css";
+} from "./Form.css"
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -34,28 +34,28 @@ const validationSchema = Yup.object().shape({
     .required("Podaj hasło.")
     .min(8, "Hasło musi mieć min. 8 znaków.")
     .max(50, "Hasło może mieć max. 50 znaków."),
-});
-
-const initialValues: FormRegisterValues = {
-  name: "",
-  email: "",
-  password: "",
-};
+})
 
 const FormRegister: FC = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const response = useSelector((state: RootState) => state.user.response);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const response = useSelector((state: RootState) => state.user.response)
+
+  const initialValues: FormRegisterValues = {
+    name: "",
+    email: "",
+    password: "",
+  }
 
   const submitForm = (values: FormRegisterValues) => {
-    dispatch(registerUser(values));
-  };
+    dispatch(registerUser(values))
+  }
 
   useEffect(() => {
     if (response.success) {
-      navigate("/");
+      navigate("/")
     }
-  }, [response]);
+  }, [response])
   return (
     <Formik
       initialValues={initialValues}
@@ -70,7 +70,7 @@ const FormRegister: FC = () => {
           handleChange,
           handleSubmit,
           handleBlur,
-        } = formik;
+        } = formik
         return (
           <StyledBoxForm>
             <StyledForm onSubmit={handleSubmit} noValidate>
@@ -128,10 +128,10 @@ const FormRegister: FC = () => {
               </div>
             </StyledForm>
           </StyledBoxForm>
-        );
+        )
       }}
     </Formik>
-  );
-};
+  )
+}
 
-export default FormRegister;
+export default FormRegister
