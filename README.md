@@ -50,7 +50,7 @@ The project relies on the following libraries:
     Login: j.nowak@gmail.com
     Password: 123nowak123
 
-        **Creating a New Account:**
+    **Creating a New Account:**
 
     If you choose to create a new account, it will automatically be granted admin privileges.
 
