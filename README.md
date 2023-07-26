@@ -1,3 +1,4 @@
+
 # Product Management Panel
 
 This project was bootstrapped with Create React App using TypeScript, styled-components, Formik, Yup, Redux, and Lodash.
@@ -40,19 +41,19 @@ The project relies on the following libraries:
 1.  Upon accessing the panel, users will be presented with a login form.
 2.  Existing users can enter their credentials to log in, while new users can create an account with admin permissions.
 3.  Below are the login details for each type of account:
-    **Customer Account:**
+   -  **Customer Account:**
     Login: p.knys@gmail.com
     Password: knys1234
-    **Employee Account:**
+   -  **Employee Account:**
     Login: t.kowalski@gmail.com
     Password: kowalski123
-    **Admin Account:**
+   - **Admin Account:**
     Login: j.nowak@gmail.com
     Password: 123nowak123
 
     **Creating a New Account:**
 
-    If you choose to create a new account, it will automatically be granted admin privileges.
+	  If you choose to create a new account, it will automatically be granted admin privileges.
 
 4.  After successful login, users will be redirected to the main dashboard.
 5.  The dashboard will display different functionalities based on the user's role:
