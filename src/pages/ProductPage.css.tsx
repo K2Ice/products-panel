@@ -57,10 +57,7 @@ export const StyledTableProducts = styled.table`
   }
 `
 
-export const StyledThTitle = styled.th`
-  /* text-align: left;
-  padding-left: 15px; */
-`
+export const StyledThTitle = styled.th``
 
 export const StyledThPrice = styled.th`
   width: 100px;
@@ -83,6 +80,7 @@ export const StyledBtnArrow = styled.button<{ color: string; wayUp: boolean }>`
 `
 
 export const StyledTextNoProducts = styled.p`
-  font-size: 32px;
+  font-size: 48px;
   text-align: center;
+  margin: 0 20px;
 `

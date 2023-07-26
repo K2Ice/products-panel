@@ -8,7 +8,7 @@ import { ProductInterface } from "../types/products"
 import Product from "../components/Product"
 import PopupConfirm from "../components/_shared/PopupConfirm"
 
-import { StyledContainer } from "./HomePage.css"
+import { StyledContainer, StyledLink } from "./HomePage.css"
 import {
   StyledTableProducts,
   StyledThTitle,
@@ -17,18 +17,18 @@ import {
   StyledThActions,
   StyledTextNoProducts,
 } from "./ProductPage.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons"
 
 const BasketPage: FC = () => {
-  const loggedUserCart = useSelector(
-    (state: RootState) => state.user.loggedUserCart
-  )
+  const loggedUser = useSelector((state: RootState) => state.user.loggedUser)
   const isOpen = useSelector((state: RootState) => state.popup.isOpen)
 
   return (
     <>
       {isOpen && <PopupConfirm type="basket" />}
       <StyledContainer>
-        {loggedUserCart.length ? (
+        {loggedUser?.cart?.length ? (
           <StyledTableProducts>
             <thead>
               <tr>
@@ -39,13 +39,21 @@ const BasketPage: FC = () => {
               </tr>
             </thead>
             <tbody>
-              {loggedUserCart.map((product: ProductInterface) => (
+              {loggedUser.cart!.map((product: ProductInterface) => (
                 <Product type="basket" key={product.id} product={product} />
               ))}
             </tbody>
           </StyledTableProducts>
         ) : (
-          <StyledTextNoProducts>Brak produktów w koszyku</StyledTextNoProducts>
+          <>
+            <StyledTextNoProducts>
+              Brak produktów w koszyku
+            </StyledTextNoProducts>
+            <StyledLink to="/products?page=1&way=asc&sort=title">
+              Przejdź do listy produktów
+              <FontAwesomeIcon icon={faCircleArrowRight} />
+            </StyledLink>
+          </>
         )}
       </StyledContainer>
     </>

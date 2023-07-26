@@ -18,7 +18,6 @@ export interface UserInterface {
 export interface InitialStateUser {
   users: UserInterface[]
   loggedUser: Partial<UserInterface> | null
-  loggedUserCart: ProductInterface[]
   response: {
     success: boolean | null
     message: string

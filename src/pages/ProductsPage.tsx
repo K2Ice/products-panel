@@ -62,7 +62,10 @@ const ProductsPage: FC = () => {
 
     if (sortParam) {
       const way = wayParam === "asc" ? "asc" : "desc"
-      result = _.orderBy(result, [String(sortParam)], way)
+      result =
+        sortParam === "title"
+          ? _.orderBy(result, [(el) => el.title.toLowerCase()], way)
+          : _.orderBy(result, [String(sortParam)], way)
     }
 
     setProductsToDisplay(

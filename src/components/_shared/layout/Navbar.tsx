@@ -28,9 +28,6 @@ const Navbar: FC = () => {
     window.innerWidth < 768
   )
   const loggedUser = useSelector((state: RootState) => state.user.loggedUser)
-  const loggedUserCart = useSelector(
-    (state: RootState) => state.user.loggedUserCart
-  )
 
   return (
     <header>
@@ -50,9 +47,9 @@ const Navbar: FC = () => {
             ) : (
               <StyledBoxCart>
                 <StyledLink to={"/basket"}>Koszyk</StyledLink>
-                {loggedUserCart.length ? (
+                {loggedUser.cart?.length ? (
                   <StyledNumberProducts>
-                    {loggedUserCart.length}
+                    {loggedUser.cart?.length}
                   </StyledNumberProducts>
                 ) : null}
               </StyledBoxCart>
@@ -84,9 +81,9 @@ const Navbar: FC = () => {
             ) : (
               <StyledBoxCart>
                 <StyledLink to={"/basket"}>Koszyk</StyledLink>
-                {loggedUserCart.length ? (
+                {loggedUser.cart?.length ? (
                   <StyledNumberProducts>
-                    {loggedUserCart.length}
+                    {loggedUser.cart?.length}
                   </StyledNumberProducts>
                 ) : null}
               </StyledBoxCart>
