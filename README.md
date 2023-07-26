@@ -51,9 +51,9 @@ The project relies on the following libraries:
     Login: j.nowak@gmail.com
     Password: 123nowak123
 
-    **Creating a New Account:**
-
-	  If you choose to create a new account, it will automatically be granted admin privileges.
+ **Creating a New Account:**
+ 
+If you choose to create a new account, it will automatically be granted admin privileges.
 
 4.  After successful login, users will be redirected to the main dashboard.
 5.  The dashboard will display different functionalities based on the user's role:
