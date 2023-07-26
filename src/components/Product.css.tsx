@@ -1,12 +1,23 @@
 import styled from "styled-components"
 import { breakpoints } from "../styles/theme"
+import { Role } from "../types/user"
 
-export const StyledTr = styled.tr<{ status: boolean }>`
+export const StyledTr = styled.tr<{ status: boolean | "basket" }>`
   background-color: ${({ status, theme }) =>
-    status ? theme.availableBg : theme.unAvailableBg};
+    status === "basket"
+      ? theme.secondaryBg
+      : status
+      ? theme.availableBg
+      : theme.unAvailableBg};
+  box-shadow: 0 0 1px 0 black;
+  border-radius: 10px;
+  overflow: hidden;
 `
 
-export const StyledTd = styled.td`
+export const StyledTd = styled.td<{
+  type?: "page" | "basket"
+  role?: Role
+}>`
   text-align: center;
   &:first-child {
     border-radius: 10px 0 0 10px;
@@ -27,10 +38,16 @@ export const StyledTd = styled.td`
       content: "Ilość";
     }
     &:nth-of-type(4):before {
-      content: "Status";
+      content: "${({ type, role }) =>
+        type === "basket"
+          ? "Usuń"
+          : role === Role.Client
+          ? "Do koszyka"
+          : "Status"}";
     }
     &:nth-of-type(5):before {
-      content: "Edytuj / Usuń";
+      content: "${({ role }) =>
+        role === Role.Admin ? "Edytuj / Usuń" : "Edytuj"}";
     }
   }
 `

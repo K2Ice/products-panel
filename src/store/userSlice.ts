@@ -28,11 +28,9 @@ const initialState: InitialStateUser = {
   loggedUser: {
     id: "9fe79178-24fa-11ee-be56-0242ac120002",
     name: "Tomasz Kowalski",
-    email: "t.kowalski@gmail.com",
-    password: "kowalski123",
-    role: Role.Client,
-    cart: [],
+    role: Role.Employee,
   },
+  loggedUserCart: [],
 
   response: {
     success: null,
@@ -95,13 +93,19 @@ export const userSlice = createSlice({
             success: true,
             message: "",
           }
-          state.loggedUser = foundUser
+          state.loggedUser = {
+            id: foundUser.id,
+            name: foundUser.name,
+            role: foundUser.role,
+          }
+          state.loggedUserCart = foundUser.cart
         }
       }
     },
 
     logoutUser: (state) => {
       state.loggedUser = null
+      state.loggedUserCart = []
       state.response = {
         success: null,
         message: "",
@@ -109,31 +113,37 @@ export const userSlice = createSlice({
     },
     addProductToCart: (
       state,
-      action: PayloadAction<{ id: string; product: ProductInterface }>
+      action: PayloadAction<{ product: ProductInterface }>
     ) => {
-      const foundUser = state.users.find(
-        (user) => user.id === action.payload.id
+      const { product } = action.payload
+      let loggedUserCart = Array.isArray(state.loggedUserCart)
+        ? state.loggedUserCart
+        : []
+
+      loggedUserCart.find((p: ProductInterface) => p.id === product.id)
+        ? (loggedUserCart = loggedUserCart.map((p: ProductInterface) =>
+            p.id === action.payload.product.id
+              ? { ...p, amount: p.amount + product.amount }
+              : p
+          ))
+        : loggedUserCart.push(product)
+
+      state.loggedUserCart = loggedUserCart
+    },
+    removeProductFromCart: (state, action: PayloadAction<string>) => {
+      state.loggedUserCart = state.loggedUserCart.filter(
+        (product) => product.id !== action.payload
       )
-      if (!foundUser) return
-
-      const updatedCart = foundUser.cart
-        ? foundUser.cart.map((product) =>
-            product.id === action.payload.product.id
-              ? {
-                  ...product,
-                  amount: product.amount + action.payload.product.amount,
-                }
-              : product
-          )
-        : [action.payload.product]
-      console.log(updatedCart)
-
-      state.loggedUser = { ...foundUser, cart: updatedCart }
     },
   },
 })
 
-export const { registerUser, loginUser, logoutUser, addProductToCart } =
-  userSlice.actions
+export const {
+  registerUser,
+  loginUser,
+  logoutUser,
+  addProductToCart,
+  removeProductFromCart,
+} = userSlice.actions
 
 export const { reducer } = userSlice

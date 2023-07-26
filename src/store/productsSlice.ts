@@ -108,12 +108,47 @@ const productSlice = createSlice({
       }
     },
 
+    updateProductAmount: (
+      state,
+      action: PayloadAction<{
+        id: string
+        amount: number
+        type: "add" | "remove"
+      }>
+    ) => {
+      const { id, amount, type } = action.payload
+      state.list = [...state.list].map((p: ProductInterface) =>
+        p.id === id
+          ? {
+              ...p,
+              amount:
+                type === "add"
+                  ? p.amount + amount
+                  : p.amount - amount <= 0
+                  ? 0
+                  : p.amount - amount,
+              status:
+                type === "add"
+                  ? Status.Available
+                  : p.amount - amount <= 0
+                  ? Status.Unavailable
+                  : Status.Available,
+            }
+          : p
+      )
+    },
+
     removeProduct: (state, action: PayloadAction<string>) => {
       state.list = state.list.filter((product) => product.id !== action.payload)
     },
   },
 })
 
-export const { getProduct, addProduct, editProduct, removeProduct } =
-  productSlice.actions
+export const {
+  getProduct,
+  addProduct,
+  editProduct,
+  updateProductAmount,
+  removeProduct,
+} = productSlice.actions
 export const { reducer } = productSlice

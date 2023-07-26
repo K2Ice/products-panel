@@ -1,4 +1,5 @@
 import styled from "styled-components"
+
 import { breakpoints, maxWidthContainer } from "../styles/theme"
 
 export const StyledContainer = styled.div`
@@ -79,4 +80,9 @@ export const StyledBtnArrow = styled.button<{ color: string; wayUp: boolean }>`
   margin-left: 5px;
   color: ${({ color }) => color};
   transform: ${({ wayUp }) => (wayUp ? "" : "rotate(180deg)")};
+`
+
+export const StyledTextNoProducts = styled.p`
+  font-size: 32px;
+  text-align: center;
 `
