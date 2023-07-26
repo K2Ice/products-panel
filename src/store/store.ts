@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
+
 import { reducer as productsReducer } from "./productsSlice"
 import { reducer as popupReducer } from "./popupSlice"
 import { reducer as userReducer } from "./userSlice"

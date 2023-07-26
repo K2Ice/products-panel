@@ -2,8 +2,8 @@ import { ProductInterface } from "./products"
 
 export enum Role {
   Admin = "Admin",
-  Employee = "Employee",
-  Client = "Client",
+  Employee = "Pracownik",
+  Client = "Klient",
 }
 
 export interface UserInterface {
@@ -12,12 +12,13 @@ export interface UserInterface {
   email: string
   password: string
   role: Role
-  cart: ProductInterface[] | null
+  cart: ProductInterface[]
 }
 
 export interface InitialStateUser {
   users: UserInterface[]
-  loggedUser: UserInterface | null
+  loggedUser: Partial<UserInterface> | null
+  loggedUserCart: ProductInterface[]
   response: {
     success: boolean | null
     message: string
