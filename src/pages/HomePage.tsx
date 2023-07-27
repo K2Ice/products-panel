@@ -9,6 +9,7 @@ import {
   StyledLink,
   StyledTitle,
 } from "./HomePage.css"
+const logo = require("../assets/homePagePic.jpg")
 
 const HomePage: FC = () => {
   return (
@@ -19,7 +20,7 @@ const HomePage: FC = () => {
         <FontAwesomeIcon icon={faCircleArrowRight} />
       </StyledLink>
       <StyledBoxImage>
-        <img src="/img/homePagePic.jpg" alt="Modern transparent Wardrobe" />
+        <img src={logo} alt="Modern transparent Wardrobe" />
       </StyledBoxImage>
     </StyledContainer>
   )
